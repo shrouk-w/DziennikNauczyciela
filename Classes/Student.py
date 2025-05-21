@@ -12,4 +12,4 @@ class Student(StudentManager):
             StudentManager.add_student_assinged(self, className)
 
     def __str__(self):
-        return self.name + " " + self.lastName + " " + self.pesel
+        return str(self.id) + " " +self.name + " " + self.lastName + " " + self.pesel
