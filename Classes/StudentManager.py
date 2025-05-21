@@ -29,6 +29,17 @@ class StudentManager():
             print(f"  {student}")
 
     @classmethod
+    def show_unsigned_students(cls):
+        for stud in cls.unsignedStudents:
+            print(stud)
+
+    @classmethod
+    def show_class_students(cls, className: str):
+        print(f"{className}:")
+        for stud in cls.classMap[className]:
+            print(stud)
+
+    @classmethod
     def delete_student(cls, student):  #hintery i wyjątki jak złe typy
         if cls.allStudents.count(student) == 0:
             return # dodać wyjątek jeżeli studenta nie ma w all students
