@@ -34,7 +34,7 @@ class StudentManager():
             print(stud)
 
     @classmethod
-    def show_class_students(cls, className: str):
+    def show_class_students(cls, className: str): # tu mozna dać wyjątek jak nie ma takiej klasy
         print(f"{className}:")
         for stud in cls.classMap[className]:
             print(stud)
