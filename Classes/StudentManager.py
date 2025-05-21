@@ -51,3 +51,19 @@ class StudentManager():
             cls.classMap.pop(className, None)
         # mozna dac wyjatek jak nie ma
 
+    @classmethod
+    def show_all_classes(cls):
+        for className in cls.classMap:
+            print(f"{className}")
+
+    @classmethod
+    def assign_student(cls, student, className):
+        if cls.allStudents.count(student) == 0:
+            return # wyjatek można dać
+        if cls.unsignedStudents.count(student) == 0:
+            return # wyjątek można dać
+        cls.unsignedStudents.remove(student)
+        if not className in cls.classMap:
+            cls.classMap[className] = []
+        cls.classMap[className].append(student)
+
