@@ -18,3 +18,44 @@ class Student(StudentManager):
 
     def __str__(self):
         return str(self.id) + " " +self.name + " " + self.lastName + " " + self.pesel
+
+    #sprawdź czy masz attendence na tym przedmiocie tego samego dnia -> to może w interfejsie
+    def add_grade(self, grade: Grade):
+        self.grades.append(grade)
+
+    #sprawdź czy attendence na tym przedmiocie tego dnia już nie istnieje -> to też w interfejsie
+    def add_attendance(self, attendance: Attendence):
+        self.attendance.append(attendance)
+
+    def avarage(self)-> float:
+        if len(self.grades) <= 0 :
+            return 0 # rzucić wyjątek
+        suma = 0
+        for grade in self.grades:
+            suma += grade.grade
+        return suma / len(self.grades)
+
+    def is_failling(self) -> bool:
+        if self.avarage() < 3:
+            return True
+
+        attendance_by_class = {}
+
+        for a in self.attendance:
+            if a.nameOfClass not in attendance_by_class:
+                attendance_by_class[a.nameOfClass] = []
+            attendance_by_class[a.nameOfClass].append(a.typeOfAttendence)
+
+        for subject, attendances in attendance_by_class.items():
+            total = len(attendances)
+            lates = attendances.count(TypeOfAttendence.LATE)
+            not_present = attendances.count(TypeOfAttendence.NOTPRESENT)
+
+            if total > 0 and lates / total > 0.5:
+                return True
+
+            if not_present >= 2:
+                return True
+
+        return False
+
