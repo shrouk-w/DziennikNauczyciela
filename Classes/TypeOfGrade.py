@@ -2,6 +2,6 @@
 
 
 class TypeOfGrade(Enum):
-    HOMEWORK = "home work"
-    TEST = "test"
-    QUIZ = "quiz"
+    HOMEWORK = 1
+    QUIZ = 2
+    TEST = 3

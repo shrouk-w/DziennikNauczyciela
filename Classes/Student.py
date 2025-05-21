@@ -1,4 +1,6 @@
-﻿from Classes.StudentManager import StudentManager
+﻿from Classes.Grade import Grade
+from Classes.StudentManager import StudentManager
+from Classes.Attendence import TypeOfAttendence, Attendence
 
 
 class Student(StudentManager):

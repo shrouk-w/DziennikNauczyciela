@@ -2,7 +2,7 @@
 
 
 class TypeOfAttendence(Enum):
-    LATE = "late"
-    NOTPRESENT = "notpresent"
-    PRESENT = "present"
-    JUSTIFIED = "justified"
+    LATE = 0
+    NOTPRESENT = -1
+    PRESENT = 1
+    JUSTIFIED = 2
