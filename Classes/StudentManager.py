@@ -11,11 +11,21 @@ class StudentManager():
         cls.unsignedStudents.append(student)
 
     @classmethod
-    def add_student_assinged(cls, student, className: str): # dodac hintery i wyjatki jak zle typy danych
+    def add_student_assigned(cls, student, className: str): # dodac hintery i wyjatki jak zle typy danych
         cls.allStudents.append(student)  # wyjatek jak student juz tu jest
         if not className in cls.classMap:
             cls.classMap[className] = []
         cls.classMap[className].append(student)
+
+    @classmethod
+    def reassign_class(cls,student,newClass):
+        for clas, studs in cls.classMap.items():
+            if student in studs:
+                cls.classMap[clas].remove(student)
+                break
+        if not newClass in cls.classMap:
+            cls.classMap[newClass] = []
+        cls.classMap[newClass].append(student)
 
 
     @classmethod
@@ -28,6 +38,21 @@ class StudentManager():
             print("unsigned:")
             for student in cls.unsignedStudents:
                 print(f"  {student}")
+
+    @classmethod
+    def show_all_students_failling(cls):
+        for className, students in cls.classMap.items():
+            print(f"{className}:")
+            for student in students:
+                if student.is_failling():
+                    print(f"  {student}")
+        if len(cls.unsignedStudents) != 0:
+            print("unsigned:")
+            for student in cls.unsignedStudents:
+                if student.is_failling():
+                    print(f"  {student}")
+
+
 
     @classmethod
     def show_unsigned_students(cls):

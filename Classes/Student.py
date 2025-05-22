@@ -16,7 +16,7 @@ class Student(StudentManager):
         if className == "":
             StudentManager.add_student(self)
         else:
-            StudentManager.add_student_assinged(self, className)
+            StudentManager.add_student_assigned(self, className)
 
     def __str__(self):
         return str(self.id) + " " +self.name + " " + self.lastName + " " + self.pesel

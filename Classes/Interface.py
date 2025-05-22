@@ -13,6 +13,12 @@ class Interface:
     def start(cls):
         stud = Student("Jan","Kowalski","12312312312","1A")
         stud.add_grade(Grade(1,"","j. polski",TypeOfGrade.TEST))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.QUIZ))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
+        stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
         stud = Student("Jan2","Kowalski","12312312312","1A")
         stud = Student("Jan3","Kowalski","12312312312","1A")
         stud = Student("Jan4","Kowalski","12312312312","1A")
@@ -83,12 +89,33 @@ class Interface:
                     print("3. edytuj obecność studenta")
                     print("4. wyświetl średnią")
                     print("5. wyświetl czy jest zagrożony")
+                    print("6. przypisz do innej klasy")
                     print("0. usuń studenta")
                     print("-------------------------------------")
                     decision = input()
                     match decision:
                         case "1":
-                            pass
+                            print("chce zmienić imię T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj imie: ")
+                                name = input()
+                                student.name = name
+                            print("chce zmienic nazwisko T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj nazwisko: ")
+                                nazwisko = input()
+                                student.nazwisko = nazwisko
+                            print("chce zmienic pesel T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj pesel: ")
+                                pesel = input()
+                                if(len(pesel) != 11):
+                                    return #tu dac wyjątek
+                                student.pesel = pesel
+
                         case "2":
                             pass
                         case "3":
@@ -96,11 +123,32 @@ class Interface:
                         case "4":
                             print(student.avarage())
                         case "5":
-                            print(student.is_failling())
+                            if(student.is_failling()):
+                                print("zagrożony")
+                            else:
+                                print("niezagrożony")
+                        case "6":
+                            print("podaj klase: ")
+                            nclas = input()
+                            StudentManager.reassign_class(student, nclas)
                         case "0":
                             StudentManager.delete_student(student)
                         case _:
                             print("nie ma takiej opcji")
+
+                case "3":
+                    StudentManager.show_all_students_failling()
+                case "4":
+                    pass
+                case "5":
+                    print("podaj klase")
+                    clas = input()
+                    StudentManager.add_class(clas)
+                case "6":
+                    print("podaj klase")
+                    clas = input()
+                    StudentManager.delete_class(clas)
+
 
                 case _:
                     print()
