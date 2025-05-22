@@ -13,8 +13,12 @@ class InvalidGradeType(Exception):
 class InvalidDescriptionType(Exception):
     pass
 
-class InvalidClassNameType(Exception):
-    pass
-
 class InvalidTypeOfGrade(Exception):
     pass
+
+class InvalidAttendenceClassName(Exception):
+    pass
+
+class InvalidTypeOfAttendence(Exception):
+    pass
+
