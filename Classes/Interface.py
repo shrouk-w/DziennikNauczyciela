@@ -1,5 +1,47 @@
-﻿class Interface:
-    pass
+﻿from Classes.Student import Student
+
+
+class Interface:
+
+    @classmethod
+    def start(cls):
+        while True:
+            print("----------Dziennik_Nauczyciela-----------")
+            print("1. Dodaj nowego ucznia")
+            print("2. Wybierz ucznia")
+            print("3. Pokaż zagrożenia")
+            print("4. Sprawdź obecność lub wystaw oceny")
+            print("0. Wyjdź")
+            print("-----------------------------------------")
+            provided = input()
+            match provided:
+                case "0":
+                    return
+                case "1":
+                    print("Wpisz imię")
+                    imie = input()
+                    print("Wpisz nazwisko")
+                    nazwisko = input()
+                    print("Wpisz pesel")
+                    pesel = input()
+                    if(len(pesel) != 11):
+                        return #tu wyjątek
+                    print("Wpisz klasę do której chcesz przypisać ucznia lub '-' jeżeli nie chcesz na razie go przypisywać")
+                    clas = input() #tu tez mozna sprwadzić czy format klasy to liczba - literka i wyjątek
+                    if(clas == '-'):
+                        student = Student(imie, nazwisko, pesel)
+                    else:
+                        student = Student(imie, nazwisko, pesel, clas)
+                    print("Dodano studenta: ")
+                    print(student)
+
+                case _:
+                    print("zły argument")
+
+
+
+
+
     #dodaj ucznia
         #wpisz imie
         #wpisz nazwisko
