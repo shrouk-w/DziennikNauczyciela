@@ -5,6 +5,16 @@ class Interface:
 
     @classmethod
     def start(cls):
+        stud = Student("Jan","Kowalski","12312312312","1A")
+        stud = Student("Jan2","Kowalski","12312312312","1A")
+        stud = Student("Jan3","Kowalski","12312312312","1A")
+        stud = Student("Jan4","Kowalski","12312312312","1A")
+        stud = Student("Jan4","Kowalski","12312312312","1A")
+        stud = Student("Michal","Kowalski","12312312312","1B")
+        stud = Student("Michal2","Kowalski","12312312312","1B")
+        stud = Student("Michal3","Kowalski","12312312312","1B")
+        stud = Student("Michal4","Kowalski","12312312312","1B")
+        stud = Student("Michal5","Kowalski","12312312312","1B")
         while True:
             print("----------Dziennik_Nauczyciela-----------")
             print("1. Dodaj nowego ucznia")
