@@ -1,4 +1,5 @@
 ﻿from Classes.Student import Student
+from Classes.StudentManager import StudentManager
 
 
 class Interface:
@@ -28,6 +29,7 @@ class Interface:
                 case "0":
                     return
                 case "1":
+                    print()
                     print("Wpisz imię")
                     imie = input()
                     print("Wpisz nazwisko")
@@ -44,9 +46,42 @@ class Interface:
                         student = Student(imie, nazwisko, pesel, clas)
                     print("Dodano studenta: ")
                     print(student)
+                case "2":
+                    print()
+                    print("1. chce wybrać ze wszystkich uczniów")
+                    print("2. chce wybrać z listy uczniów z danej klasy")
+                    decision = input()
+                    if(decision == '1'):
+                        StudentManager.show_all_students()
+                    elif(decision == '2'):
+                        StudentManager.show_all_classes()
+                        print("wpisz klasę")
+                        clas = input()
+                        StudentManager.show_class_students(clas)
+                    print("wpisz id studenta ktory cię intereuje")
+                    id = input()
+                    print("wybrałeś studenta")
+                    student = StudentManager.get_student(int(id))
+                    print(student)
+                    print("grades: ")
+                    for grade in student.grades:
+                        print(grade.grade)
+                    print("attendance: ")
+                    for attendance in student.attendance:
+                        print(attendance.typeOfAttendence)
+                    print("------wybierz co chcesz zrobić-------")
+                    print("1. edytuj dane studenta")
+                    print("2. edytuj ocenę studenta")
+                    print("3. edytuj obecność studenta")
+                    print("4. wyświetl średnią")
+                    print("5. wyświetl czy jest zagrożony")
+                    print("0. usuń studenta")
+                    print("-------------------------------------")
+
 
                 case _:
-                    print("zły argument")
+                    print()
+                    print("nie ma takiej opcji")
 
 
 

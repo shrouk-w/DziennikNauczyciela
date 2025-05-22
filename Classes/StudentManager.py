@@ -24,9 +24,10 @@ class StudentManager():
             print(f"{className}:")
             for student in students:
                 print(f"  {student}")
-        print("unsigned:")
-        for student in cls.unsignedStudents:
-            print(f"  {student}")
+        if len(cls.unsignedStudents) != 0:
+            print("unsigned:")
+            for student in cls.unsignedStudents:
+                print(f"  {student}")
 
     @classmethod
     def show_unsigned_students(cls):
@@ -51,6 +52,7 @@ class StudentManager():
             if student in students:
                 students.remove(student)
                 return
+
     @classmethod
     def add_class(cls, className):
         cls.classMap[className] = []
@@ -78,3 +80,9 @@ class StudentManager():
             cls.classMap[className] = []
         cls.classMap[className].append(student)
 
+    @classmethod
+    def get_student(cls, id):
+        for stud in cls.allStudents:
+            if stud.id == id:
+                return stud
+        return None
