@@ -17,7 +17,7 @@ class NameOfClass:
         if not isinstance(classname, str):
             raise InvalidClassNameType("Nazwa klasy musi być w formie tekstu")
         if classname not in cls.className:
-            raise ClassDoesNotExist("Klasa '{classname}' nie istnieje")
+            raise ClassDoesNotExist(f"Klasa '{classname}' nie istnieje")
         cls.className.remove(classname)
 
     @classmethod

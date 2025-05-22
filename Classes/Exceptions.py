@@ -6,3 +6,15 @@ class ClassAlreadyExists(Exception):
 
 class ClassDoesNotExist(Exception):
     pass
+
+class InvalidGradeType(Exception):
+    pass
+
+class InvalidDescriptionType(Exception):
+    pass
+
+class InvalidClassNameType(Exception):
+    pass
+
+class InvalidTypeOfGrade(Exception):
+    pass
