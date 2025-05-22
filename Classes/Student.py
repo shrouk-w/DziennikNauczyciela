@@ -1,11 +1,17 @@
 ﻿from Classes.Grade import Grade
 from Classes.StudentManager import StudentManager
 from Classes.Attendence import TypeOfAttendence, Attendence
+from Classes.Exceptions import InvalidStudentData, InvalidPesel
 
 
 class Student(StudentManager):
     id = 1
     def __init__(self, name, lastName, pesel, className = ""):
+        if not all(isinstance(val, str) for val in [name, lastName]):
+            raise InvalidStudentData("Imię i nazwisko muszą być w postaci tekstu")
+        if len(pesel) != 11:
+            raise InvalidPesel("Pesel musi miec 11 cyfr")
+
         self.id = Student.id
         Student.id += 1
         self.name = name

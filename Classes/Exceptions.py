@@ -22,3 +22,10 @@ class InvalidAttendenceClassName(Exception):
 class InvalidTypeOfAttendence(Exception):
     pass
 
+class InvalidStudentData(Exception):
+    pass
+
+class InvalidPesel(Exception):
+    pass
+
+
