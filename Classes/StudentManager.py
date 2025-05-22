@@ -1,4 +1,4 @@
-﻿
+﻿from Classes.Exceptions import StudentAlreadyExists
 
 class StudentManager():
     allStudents = [] # for checking if student already is in our base
@@ -7,11 +7,15 @@ class StudentManager():
 
     @classmethod
     def add_student(cls, student): # dodac hintery i wyjatki jak zle typy danych
+        if student in cls.allStudents:
+            raise StudentAlreadyExists("Student jest juz zapisany w systemie")
         cls.allStudents.append(student)  # wyjatek jak student juz tu jest
         cls.unsignedStudents.append(student)
 
     @classmethod
     def add_student_assigned(cls, student, className: str): # dodac hintery i wyjatki jak zle typy danych
+        if student in cls.allStudents:
+            raise StudentAlreadyExists("Student jest juz zapisany w systemie")
         cls.allStudents.append(student)  # wyjatek jak student juz tu jest
         if not className in cls.classMap:
             cls.classMap[className] = []

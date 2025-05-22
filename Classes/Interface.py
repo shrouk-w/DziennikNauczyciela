@@ -5,6 +5,7 @@ from Classes.Student import Student
 from Classes.StudentManager import StudentManager
 from Classes.TypeOfAttendence import TypeOfAttendence
 from Classes.TypeOfGrade import TypeOfGrade
+from Classes.Charts import Charts
 
 
 class Interface:

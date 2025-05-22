@@ -13,9 +13,6 @@ class InvalidGradeType(Exception):
 class InvalidDescriptionType(Exception):
     pass
 
-class InvalidTypeOfGrade(Exception):
-    pass
-
 class InvalidAttendenceClassName(Exception):
     pass
 
@@ -26,6 +23,9 @@ class InvalidStudentData(Exception):
     pass
 
 class InvalidPesel(Exception):
+    pass
+
+class StudentAlreadyExists(Exception):
     pass
 
 
