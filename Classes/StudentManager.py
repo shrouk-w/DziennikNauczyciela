@@ -61,6 +61,8 @@ class StudentManager():
     @classmethod
     def delete_class(cls, className):
         if className in cls.classMap:
+            for student in cls.classMap[className]:
+                cls.unsignedStudents.append(student)
             cls.classMap.pop(className, None)
         # mozna dac wyjatek jak nie ma
 
