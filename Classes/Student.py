@@ -5,7 +5,7 @@ from Classes.Attendence import TypeOfAttendence, Attendence
 
 class Student(StudentManager):
     id = 1
-    def __init__(self, name, lastName, pesel, className = ""): # hintery, sprawdzić czy pesel ma 11 cyfr
+    def __init__(self, name, lastName, pesel, className = ""):
         self.id = Student.id
         Student.id += 1
         self.name = name

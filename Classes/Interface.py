@@ -1,5 +1,10 @@
-﻿from Classes.Student import Student
+﻿from unittest import case
+
+from Classes.Grade import Grade
+from Classes.Student import Student
 from Classes.StudentManager import StudentManager
+from Classes.TypeOfAttendence import TypeOfAttendence
+from Classes.TypeOfGrade import TypeOfGrade
 
 
 class Interface:
@@ -7,6 +12,7 @@ class Interface:
     @classmethod
     def start(cls):
         stud = Student("Jan","Kowalski","12312312312","1A")
+        stud.add_grade(Grade(1,"","j. polski",TypeOfGrade.TEST))
         stud = Student("Jan2","Kowalski","12312312312","1A")
         stud = Student("Jan3","Kowalski","12312312312","1A")
         stud = Student("Jan4","Kowalski","12312312312","1A")
@@ -22,6 +28,8 @@ class Interface:
             print("2. Wybierz ucznia")
             print("3. Pokaż zagrożenia")
             print("4. Sprawdź obecność lub wystaw oceny")
+            print("5. Wstaw nową klasę")
+            print("6. Usuń jedną z klas")
             print("0. Wyjdź")
             print("-----------------------------------------")
             provided = input()
@@ -61,7 +69,7 @@ class Interface:
                     print("wpisz id studenta ktory cię intereuje")
                     id = input()
                     print("wybrałeś studenta")
-                    student = StudentManager.get_student(int(id))
+                    student = StudentManager.get_student(int(id)) #wyjatek jak zwróci None nie ma studenta
                     print(student)
                     print("grades: ")
                     for grade in student.grades:
@@ -77,7 +85,22 @@ class Interface:
                     print("5. wyświetl czy jest zagrożony")
                     print("0. usuń studenta")
                     print("-------------------------------------")
-
+                    decision = input()
+                    match decision:
+                        case "1":
+                            pass
+                        case "2":
+                            pass
+                        case "3":
+                            pass
+                        case "4":
+                            print(student.avarage())
+                        case "5":
+                            print(student.is_failling())
+                        case "0":
+                            StudentManager.delete_student(student)
+                        case _:
+                            print("nie ma takiej opcji")
 
                 case _:
                     print()
