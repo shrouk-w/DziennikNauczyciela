@@ -1,20 +1,23 @@
-﻿class NameOfClass:
+﻿from Classes.Exceptions import InvalidClassNameType, ClassAlreadyExists, ClassDoesNotExist
+
+
+class NameOfClass:
     className = []
 
     @classmethod
     def add_class(cls, classname: str):
         if not isinstance(classname, str):
-            raise TypeError("Nazwa klasy musi być w formie tekstu")
+            raise InvalidClassNameType("Nazwa klasy musi być w formie tekstu")
         if classname in cls.className:
-            raise ValueError(f"Klasa '{classname}' już istnieje")
+            raise ClassAlreadyExists(f"Klasa '{classname}' już istnieje")
         cls.className.append(classname)
 
     @classmethod
     def del_class(cls, classname: str):
         if not isinstance(classname, str):
-            raise TypeError("Nazwa klasy musi być w formie tekstu")
+            raise InvalidClassNameType("Nazwa klasy musi być w formie tekstu")
         if classname not in cls.className:
-            raise ValueError(f"Klasa '{classname}' nie istnieje")
+            raise ClassDoesNotExist("Klasa '{classname}' nie istnieje")
         cls.className.remove(classname)
 
     @classmethod
