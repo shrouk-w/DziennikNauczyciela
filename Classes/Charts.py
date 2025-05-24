@@ -2,6 +2,8 @@
 from datetime import datetime
 import pandas as pd
 import os
+
+from Classes.Student import Student
 from Classes.TypeOfAttendence import TypeOfAttendence
 
 class Charts:
@@ -9,18 +11,18 @@ class Charts:
     excel_file = os.path.join(output_dir, "charts_report.xlsx")
 
     @staticmethod
-    def _prepare_output():
+    def _prepare_output() -> None:
         os.makedirs(Charts.output_dir, exist_ok=True)
 
     @staticmethod
-    def _save_chart_and_data(writer, image_path, sheet_name, dataframe: pd.DataFrame):
+    def _save_chart_and_data(writer: pd.ExcelWriter, image_path: str, sheet_name: str, dataframe: pd.DataFrame) -> None:
         dataframe.to_excel(writer, sheet_name=sheet_name[:31], startrow=15, index=False)
         workbook = writer.book
         worksheet = writer.sheets[sheet_name[:31]]
         worksheet.insert_image('B2', image_path)
 
     @staticmethod
-    def plot_student_averages(students: list, writer):
+    def plot_student_averages(students: list[Student], writer: pd.ExcelWriter) -> None:
         names = []
         averages = []
         for student in students:
@@ -46,7 +48,7 @@ class Charts:
         Charts._save_chart_and_data(writer, image_path, "Srednie", df)
 
     @staticmethod
-    def plot_attendance_distribution(students: list, writer):
+    def plot_attendance_distribution(students: list[Student], writer: pd.ExcelWriter) -> None:
         attendance_types = ["PRESENT", "LATE", "NOTPRESENT","JUSTIFIED"]
         summary = {f"{s.name} {s.lastName}": {t: 0 for t in attendance_types} for s in students}
 
@@ -69,7 +71,7 @@ class Charts:
         Charts._save_chart_and_data(writer, image_path, "Obecnosc", df)
 
     @staticmethod
-    def plot_student_grades_over_time(student, writer):
+    def plot_student_grades_over_time(student: Student, writer: pd.ExcelWriter) -> None:
         if not student.grades:
             print(f"Uczeń {student.name} {student.lastName} nie ma ocen.")
             return
@@ -92,7 +94,7 @@ class Charts:
         Charts._save_chart_and_data(writer, image_path, f"Oceny_{student.name}_{student.lastName}"[:31], df)
 
     @staticmethod
-    def export_all(students: list):
+    def export_all(students: list[Student]) -> None:
         Charts._prepare_output()
         with pd.ExcelWriter(Charts.excel_file, engine='xlsxwriter') as writer:
             Charts.plot_student_averages(students, writer)
@@ -102,7 +104,7 @@ class Charts:
         print(f"Wszystkie dane i wykresy zapisano do: {Charts.excel_file}")
 
     @staticmethod
-    def export_one(student):
+    def export_one(student: Student) -> None:
         Charts._prepare_output()
         with pd.ExcelWriter(Charts.excel_file, engine='xlsxwriter') as writer:
             Charts.plot_student_averages([student], writer)
