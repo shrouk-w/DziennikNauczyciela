@@ -6,7 +6,7 @@ from Classes.Exceptions import InvalidStudentData, InvalidPesel
 
 class Student(StudentManager):
     id = 1
-    def __init__(self, name, lastName, pesel, className = ""):
+    def __init__(self, name: str, lastName: str, pesel: str, className: str = "") -> None:
         if not all(isinstance(val, str) for val in [name, lastName]):
             raise InvalidStudentData("Imię i nazwisko muszą być w postaci tekstu")
         if len(pesel) != 11:
@@ -24,17 +24,17 @@ class Student(StudentManager):
         else:
             StudentManager.add_student_assigned(self, className)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return str(self.id) + " " +self.name + " " + self.lastName + " " + self.pesel
 
 
-    def add_grade(self, grade: Grade):
+    def add_grade(self, grade: Grade) -> None:
         self.grades.append(grade)
 
-    def add_attendance(self, attendance: Attendence):
+    def add_attendance(self, attendance: Attendence) -> None:
         self.attendance.append(attendance)
 
-    def avarage(self)-> float:
+    def avarage(self) -> float:
         if len(self.grades) <= 0 :
             return 0 # rzucić wyjątek
         suma = 0
