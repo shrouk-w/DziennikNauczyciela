@@ -84,7 +84,9 @@ class Interface:
                     print("wpisz id studenta ktory cię intereuje")
                     id = input()
                     print("wybrałeś studenta")
-                    student = StudentManager.get_student(int(id)) #wyjatek jak zwróci None nie ma studenta
+                    student = StudentManager.get_student(int(id))
+                    if student is None:
+                        return #wyjatek jak zwróci None nie ma studenta
                     print(student)
                     print("grades: ")
                     for grade in student.grades:
