@@ -47,7 +47,7 @@ class Charts:
 
     @staticmethod
     def plot_attendance_distribution(students: list, writer):
-        attendance_types = ["PRESENT", "LATE", "NOTPRESENT"]
+        attendance_types = ["PRESENT", "LATE", "NOTPRESENT","JUSTIFIED"]
         summary = {f"{s.name} {s.lastName}": {t: 0 for t in attendance_types} for s in students}
 
         for student in students:
