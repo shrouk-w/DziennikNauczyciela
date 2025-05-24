@@ -8,7 +8,7 @@ from Classes.Exceptions import (
 
 
 class Attendence:
-    def __init__(self, nameOfClass, typeOfAttendence): # hintery i wyjątki jak zły typ
+    def __init__(self, nameOfClass, typeOfAttendence):
         if not isinstance(nameOfClass, str):
             raise InvalidAttendenceClassName("Nazwa klasy musi być w postaci tekstu")
         if not isinstance(typeOfAttendence, str):

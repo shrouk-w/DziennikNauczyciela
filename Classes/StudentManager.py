@@ -1,22 +1,22 @@
 ﻿from Classes.Exceptions import StudentAlreadyExists
 
 class StudentManager():
-    allStudents = [] # for checking if student already is in our base
+    allStudents = []
     unsignedStudents = []
     classMap = {}
 
     @classmethod
-    def add_student(cls, student): # dodac hintery i wyjatki jak zle typy danych
+    def add_student(cls, student):
         if student in cls.allStudents:
             raise StudentAlreadyExists("Student jest juz zapisany w systemie")
-        cls.allStudents.append(student)  # wyjatek jak student juz tu jest
+        cls.allStudents.append(student)
         cls.unsignedStudents.append(student)
 
     @classmethod
-    def add_student_assigned(cls, student, className: str): # dodac hintery i wyjatki jak zle typy danych
+    def add_student_assigned(cls, student, className: str):
         if student in cls.allStudents:
             raise StudentAlreadyExists("Student jest juz zapisany w systemie")
-        cls.allStudents.append(student)  # wyjatek jak student juz tu jest
+        cls.allStudents.append(student)
         if not className in cls.classMap:
             cls.classMap[className] = []
         cls.classMap[className].append(student)
@@ -64,15 +64,15 @@ class StudentManager():
             print(stud)
 
     @classmethod
-    def show_class_students(cls, className: str): # tu mozna dać wyjątek jak nie ma takiej klasy
+    def show_class_students(cls, className: str):
         print(f"{className}:")
         for stud in cls.classMap[className]:
             print(stud)
 
     @classmethod
-    def delete_student(cls, student):  #hintery i wyjątki jak złe typy
+    def delete_student(cls, student):
         if cls.allStudents.count(student) == 0:
-            return # dodać wyjątek jeżeli studenta nie ma w all students
+            return
         cls.allStudents.remove(student)
         if student in cls.unsignedStudents:
             cls.unsignedStudents.remove(student)
@@ -85,7 +85,7 @@ class StudentManager():
     @classmethod
     def add_class(cls, className):
         cls.classMap[className] = []
-        #mozna dac wyjatek jak juz jest
+
 
     @classmethod
     def delete_class(cls, className):
@@ -93,7 +93,7 @@ class StudentManager():
             for student in cls.classMap[className]:
                 cls.unsignedStudents.append(student)
             cls.classMap.pop(className, None)
-        # mozna dac wyjatek jak nie ma
+
 
     @classmethod
     def show_all_classes(cls):
@@ -103,9 +103,9 @@ class StudentManager():
     @classmethod
     def assign_student(cls, student, className):
         if cls.allStudents.count(student) == 0:
-            return # wyjatek można dać
+            return
         if cls.unsignedStudents.count(student) == 0:
-            return # wyjątek można dać
+            return
         cls.unsignedStudents.remove(student)
         if not className in cls.classMap:
             cls.classMap[className] = []

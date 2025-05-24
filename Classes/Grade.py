@@ -20,4 +20,4 @@ class Grade:
         self.desc = desc
         self.nameOfClass = nameOfClass
         self.type = TypeOfGrade(type)
-        self.date = date.today() # przy dodawaniu oceny trzeba by sprawdzić czy student ma już obecność na tym przedmiocie z tą samą datą
+        self.date = date.today()

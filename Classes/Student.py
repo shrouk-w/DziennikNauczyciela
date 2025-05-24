@@ -27,11 +27,10 @@ class Student(StudentManager):
     def __str__(self):
         return str(self.id) + " " +self.name + " " + self.lastName + " " + self.pesel
 
-    #sprawdź czy masz attendence na tym przedmiocie tego samego dnia -> to może w interfejsie
+
     def add_grade(self, grade: Grade):
         self.grades.append(grade)
 
-    #sprawdź czy attendence na tym przedmiocie tego dnia już nie istnieje -> to też w interfejsie
     def add_attendance(self, attendance: Attendence):
         self.attendance.append(attendance)
 
