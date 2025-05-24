@@ -2,6 +2,8 @@
 from unittest import case
 
 from Classes.Attendence import Attendence
+from Classes.Exceptions import InvalidStudentData, ClassDoesNotExist, InvalidClassNameType, InvalidGradeType, \
+    InvalidPesel
 from Classes.Grade import Grade
 from Classes.NameOfClass import NameOfClass
 from Classes.Student import Student
@@ -63,7 +65,7 @@ class Interface:
                     print("Wpisz pesel")
                     pesel = input()
                     if(len(pesel) != 11):
-                        return #tu wyjątek
+                        raise InvalidPesel("PESEL musi mieć dokładnie 11 cyfr.")
                     print("Wpisz klasę do której chcesz przypisać ucznia lub '-' jeżeli nie chcesz na razie go przypisywać")
                     clas = input()
                     if(clas == '-'):
@@ -89,7 +91,7 @@ class Interface:
                     print("wybrałeś studenta")
                     student = StudentManager.get_student(int(id))
                     if student is None:
-                        return #wyjatek jak zwróci None to nie znaleziono studenta
+                        raise InvalidStudentData("Nie znaleziono ucznia o podanym ID.")
                     print(student)
                     print("grades: ")
                     for grade in student.grades:
@@ -129,7 +131,7 @@ class Interface:
                                 print("podaj pesel: ")
                                 pesel = input()
                                 if(len(pesel) != 11):
-                                    return #tu dac wyjątek
+                                    raise InvalidPesel("PESEL musi mieć dokładnie 11 cyfr.")
                                 student.pesel = pesel
 
                         case "2":
@@ -138,7 +140,7 @@ class Interface:
                             print("wybierz id oceny którą chcesz edytować")
                             id = int(input())-1
                             if student.grades[id].date != date.today():
-                                return #wyjątek można edytować tylko oecny wystawione dzisiaj (tak było w wymaganiach projektu)
+                                raise InvalidGradeType("Można edytować tylko ocenę wystawioną dzisiaj.")
                             print("chce zmienić ocenę numeryczną T/N")
                             dec = input()
                             if(dec == 'T'):
@@ -158,7 +160,7 @@ class Interface:
                                 print("wybierz przedmiot")
                                 clasname = input()
                                 if not NameOfClass.isNameOfClass(clasname):
-                                    return #wyjątek nie ma takiego przedmiotu
+                                    raise InvalidClassNameType(f"Nie znaleziono przedmiotu: {clasname}")
                                 student.grades[id].nameOfClass = clasname
                             print("chce edytować typ oceny T/N")
                             dec = input()
@@ -177,8 +179,8 @@ class Interface:
                                 print(f"{i + 1}: {student.attendance[i]}")
                             print("wybierz id obecności którą chcesz edytować")
                             id = int(input()) - 1
-                            if student.attendance[id].dateOfAttendence != date.today():
-                                return #wyjątek można edytować tylko obecności wystawione dzisiaj (tak było w wymaganiach projektu)
+                            if student.grades[id].date != date.today():
+                                raise InvalidGradeType("Można edytować tylko ocenę wystawioną dzisiaj.")
                             print("chce zmienić przedmiot T/N")
                             dec = input()
                             if (dec == 'T'):
@@ -186,7 +188,7 @@ class Interface:
                                 print("wybierz przedmiot")
                                 clasname = input()
                                 if not NameOfClass.isNameOfClass(clasname):
-                                    return #wyjątek nie ma tekiaego przedmiotu
+                                    raise InvalidClassNameType(f"Nie znaleziono przedmiotu: {clasname}")
                                 student.attendance[id].nameOfClass = clasname
                             print("chce edytować typ obecności T/N")
                             dec = input()
@@ -230,12 +232,12 @@ class Interface:
                     print("wpisz klasę")
                     clas = input()
                     if not StudentManager.isClass(clas):
-                        return # dac wyjatek
+                        raise ClassDoesNotExist(f"Nie ma takiej klasy: {clas}")
                     print("wpisz przedmiot z listy: ")
                     NameOfClass.show_class_names()
                     clasname = input()
                     if not NameOfClass.isNameOfClass(clasname):
-                        return # dac wyjatek
+                        raise InvalidClassNameType(f"Nie znaleziono przedmiotu: {clasname}")
                     while True:
                         print("co chcesz zrobić: ")
                         print("1. sprawdzić listę obecności")
@@ -249,8 +251,8 @@ class Interface:
                             print("wpisz id ucznia ktoremu chcesz wstawic ocene")
                             id = input()
                             stud = StudentManager.get_student(int(id))
-                            if stud is None :
-                                return # wyjątek nie zanleziono taikego ucznia
+                            if stud is None:
+                                raise InvalidStudentData("Nie znaleziono ucznia o podanym ID.")
                             print("wpisz ocene (przdział 1-6)")
                             grade = float(input())
                             print("wpisz opis")
