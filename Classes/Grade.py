@@ -23,3 +23,7 @@ class Grade:
         self.nameOfClass = nameOfClass
         self.type = TypeOfGrade(type)
         self.date = date
+
+    def __str__(self):
+        return f"grade: {self.grade} desc: {self.desc} from: {self.nameOfClass} type: {self.type} date: {self.date}"
+
