@@ -125,7 +125,7 @@ class StudentManager():
 
     @classmethod
     def checkAttendence(cls, className, NameOfClass):
-        print("---------legend---------")
+        print("---------legenda--------")
         print("-1. absent")
         print("0. late")
         print("1. present")
