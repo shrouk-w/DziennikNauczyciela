@@ -16,7 +16,7 @@ from Classes.Charts import Charts
 class Interface:
 
     @classmethod
-    def start(cls):
+    def start(cls) -> None:
         NameOfClass.add_class("j. polski")
         NameOfClass.add_class("j. angielski")
         NameOfClass.add_class("matematyka")
