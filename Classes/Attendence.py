@@ -17,3 +17,6 @@ class Attendence:
         self.nameOfClass = nameOfClass
         self.typeOfAttendence = TypeOfAttendence(typeOfAttendence)
         self.dateOfAttendence = date
+
+    def __str__(self):
+        return f"from: {self.nameOfClass} type: {self.typeOfAttendence} date: {self.dateOfAttendence}"
