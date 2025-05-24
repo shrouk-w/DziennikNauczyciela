@@ -1,5 +1,7 @@
 ﻿from Classes.Attendence import Attendence
 from Classes.Exceptions import StudentAlreadyExists
+from Classes.Student import Student
+
 
 class StudentManager():
     allStudents = []
@@ -7,14 +9,14 @@ class StudentManager():
     classMap = {}
 
     @classmethod
-    def add_student(cls, student):
+    def add_student(cls, student: Student) -> None:
         if student in cls.allStudents:
             raise StudentAlreadyExists("Student jest juz zapisany w systemie")
         cls.allStudents.append(student)
         cls.unsignedStudents.append(student)
 
     @classmethod
-    def add_student_assigned(cls, student, className: str):
+    def add_student_assigned(cls, student: Student, className: str) -> None:
         if student in cls.allStudents:
             raise StudentAlreadyExists("Student jest juz zapisany w systemie")
         cls.allStudents.append(student)
@@ -23,7 +25,7 @@ class StudentManager():
         cls.classMap[className].append(student)
 
     @classmethod
-    def reassign_class(cls,student,newClass):
+    def reassign_class(cls, student: "Student", newClass: str) -> None:
         for clas, studs in cls.classMap.items():
             if student in studs:
                 cls.classMap[clas].remove(student)
@@ -34,7 +36,7 @@ class StudentManager():
 
 
     @classmethod
-    def show_all_students(cls):
+    def show_all_students(cls) -> None:
         for className, students in cls.classMap.items():
             print(f"{className}:")
             for student in students:
@@ -45,7 +47,7 @@ class StudentManager():
                 print(f"  {student}")
 
     @classmethod
-    def show_all_students_failling(cls):
+    def show_all_students_failling(cls) -> None:
         for className, students in cls.classMap.items():
             print(f"{className}:")
             for student in students:
@@ -60,18 +62,18 @@ class StudentManager():
 
 
     @classmethod
-    def show_unsigned_students(cls):
+    def show_unsigned_students(cls) -> None:
         for stud in cls.unsignedStudents:
             print(stud)
 
     @classmethod
-    def show_class_students(cls, className: str):
+    def show_class_students(cls, className: str) -> None:
         print(f"{className}:")
         for stud in cls.classMap[className]:
             print(stud)
 
     @classmethod
-    def delete_student(cls, student):
+    def delete_student(cls, student: Student) -> None:
         if cls.allStudents.count(student) == 0:
             return
         cls.allStudents.remove(student)
@@ -84,12 +86,12 @@ class StudentManager():
                 return
 
     @classmethod
-    def add_class(cls, className):
+    def add_class(cls, className: str) -> None:
         cls.classMap[className] = []
 
 
     @classmethod
-    def delete_class(cls, className):
+    def delete_class(cls, className: str) -> None:
         if className in cls.classMap:
             for student in cls.classMap[className]:
                 cls.unsignedStudents.append(student)
@@ -97,12 +99,12 @@ class StudentManager():
 
 
     @classmethod
-    def show_all_classes(cls):
+    def show_all_classes(cls) -> None:
         for className in cls.classMap:
             print(f"{className}")
 
     @classmethod
-    def assign_student(cls, student, className):
+    def assign_student(cls, student: Student, className: str) -> None:
         if cls.allStudents.count(student) == 0:
             return
         if cls.unsignedStudents.count(student) == 0:
@@ -113,18 +115,18 @@ class StudentManager():
         cls.classMap[className].append(student)
 
     @classmethod
-    def get_student(cls, id):
+    def get_student(cls, id: int) -> Student | None:
         for stud in cls.allStudents:
             if stud.id == id:
                 return stud
         return None
 
     @classmethod
-    def isClass(cls, className):
+    def isClass(cls, className: str) -> bool:
         return className in cls.classMap
 
     @classmethod
-    def checkAttendence(cls, className, NameOfClass):
+    def checkAttendence(cls, className: str, NameOfClass: str) -> None:
         print("---------legenda--------")
         print("-1. nie ma")
         print("0. spóźniony")
