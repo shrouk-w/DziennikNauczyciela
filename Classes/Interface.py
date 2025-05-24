@@ -2,6 +2,7 @@
 from unittest import case
 
 from Classes.Grade import Grade
+from Classes.NameOfClass import NameOfClass
 from Classes.Student import Student
 from Classes.StudentManager import StudentManager
 from Classes.TypeOfAttendence import TypeOfAttendence
@@ -13,6 +14,9 @@ class Interface:
 
     @classmethod
     def start(cls):  # trzeba dodac jeszcze kazdemu normalne oceny przykładowe i normalny attendence przykładowy
+        NameOfClass.add_class("j. polski")
+        NameOfClass.add_class("j. angielski")
+        NameOfClass.add_class("matematyka")
         stud = Student("Jan","Kowalski","12312312312","1A")
         stud.add_grade(Grade(1,"","j. polski",TypeOfGrade.TEST, date.fromisocalendar(2025,5,1)))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.QUIZ))
@@ -144,7 +148,26 @@ class Interface:
                 case "3":
                     StudentManager.show_all_students_failling()
                 case "4":
-                    pass
+                    StudentManager.show_all_classes()
+                    print("wpisz klasę")
+                    clas = input()
+                    if not StudentManager.isClass(clas):
+                        return # dac wyjatek
+                    print("wpisz przedmiot z listy: ")
+                    NameOfClass.show_class_names()
+                    clasname = input()
+                    if not NameOfClass.isNameOfClass(clasname):
+                        return # dac wyjatek
+                    print("co chcesz zrobić: ")
+                    print("1. sprawdzić listę obecności")
+                    print("2. wystawić ocenę")
+                    dec = input()
+                    if(dec == '1'):
+                        StudentManager.checkAttendence(clas, clasname)
+                    elif(dec == '2'):
+                        pass
+                    else:
+                        print("nie ma takiej opcji")
                 case "5":
                     print("podaj klase")
                     clas = input()

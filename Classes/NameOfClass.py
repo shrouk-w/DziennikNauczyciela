@@ -22,4 +22,8 @@ class NameOfClass:
 
     @classmethod
     def show_class_names(cls):
-        return cls.className
+        print(cls.className)
+
+    @classmethod
+    def isNameOfClass(cls, classname: str):
+        return classname in cls.className

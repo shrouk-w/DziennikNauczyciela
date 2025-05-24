@@ -1,4 +1,5 @@
-﻿from Classes.Exceptions import StudentAlreadyExists
+﻿from Classes.Attendence import Attendence
+from Classes.Exceptions import StudentAlreadyExists
 
 class StudentManager():
     allStudents = []
@@ -117,3 +118,20 @@ class StudentManager():
             if stud.id == id:
                 return stud
         return None
+
+    @classmethod
+    def isClass(cls, className):
+        return className in cls.classMap
+
+    @classmethod
+    def checkAttendence(cls, className, NameOfClass):
+        print("---------legend---------")
+        print("-1. absent")
+        print("0. late")
+        print("1. present")
+        print("2. justified absence")
+        print("------------------------")
+        for stud in cls.classMap[className]:
+            print(stud.name + " " + stud.lastName)
+            dec = input()
+            stud.add_attendance(Attendence(NameOfClass, int(dec)))
