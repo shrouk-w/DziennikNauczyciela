@@ -126,10 +126,10 @@ class StudentManager():
     @classmethod
     def checkAttendence(cls, className, NameOfClass):
         print("---------legenda--------")
-        print("-1. absent")
-        print("0. late")
-        print("1. present")
-        print("2. justified absence")
+        print("-1. nie ma")
+        print("0. spóźniony")
+        print("1. obecny")
+        print("2. usprawiedliwiony")
         print("------------------------")
         for stud in cls.classMap[className]:
             print(stud.name + " " + stud.lastName)
