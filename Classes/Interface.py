@@ -99,6 +99,8 @@ class Interface:
                     print("4. wyświetl średnią")
                     print("5. wyświetl czy jest zagrożony")
                     print("6. przypisz do innej klasy")
+                    print("7. wyświetl oceny z detalami")
+                    print("8. wyświetl obecności z detalami") 
                     print("0. usuń studenta")
                     print("-------------------------------------")
                     decision = input()
