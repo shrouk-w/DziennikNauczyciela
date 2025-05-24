@@ -158,33 +158,35 @@ class Interface:
                     clasname = input()
                     if not NameOfClass.isNameOfClass(clasname):
                         return # dac wyjatek
-                    print("co chcesz zrobić: ")
-                    print("1. sprawdzić listę obecności")
-                    print("2. wystawić ocenę")
-                    dec = input()
-                    if(dec == '1'):
-                        StudentManager.checkAttendence(clas, clasname)
-                    elif(dec == '2'):
-                        StudentManager.show_class_students(clas)
-                        print("wpisz id ucznia ktoremu chcesz wstawic ocene")
-                        id = input()
-                        stud = StudentManager.get_student(int(id))
-                        if(stud is None):
-                            return # wyjątek nie zanleziono taikego ucznia
-                        print("wpisz ocene (przdział 1-6)")
-                        grade = float(input())
-                        print("wpisz opis")
-                        desc = input()
-                        print("podaj typ: ")
-                        print("--legenda--")
-                        print("1. praca domowa")
-                        print("2. kartkówka")
-                        print("3. sprawdzian")
-                        print("-----------")
-                        type = int(input())
-                        stud.add_grade(Grade(grade,desc,clasname, type))
-                    else:
-                        print("nie ma takiej opcji")
+                    while True:
+                        print("co chcesz zrobić: ")
+                        print("1. sprawdzić listę obecności")
+                        print("2. wystawić ocenę")
+                        print("0. skończyłem")
+                        dec = input()
+                        if(dec == '1'):
+                            StudentManager.checkAttendence(clas, clasname)
+                        elif(dec == '2'):
+                            StudentManager.show_class_students(clas)
+                            print("wpisz id ucznia ktoremu chcesz wstawic ocene")
+                            id = input()
+                            stud = StudentManager.get_student(int(id))
+                            if(stud is None):
+                                return # wyjątek nie zanleziono taikego ucznia
+                            print("wpisz ocene (przdział 1-6)")
+                            grade = float(input())
+                            print("wpisz opis")
+                            desc = input()
+                            print("podaj typ: ")
+                            print("--legenda--")
+                            print("1. praca domowa")
+                            print("2. kartkówka")
+                            print("3. sprawdzian")
+                            print("-----------")
+                            type = int(input())
+                            stud.add_grade(Grade(grade,desc,clasname, type))
+                        else:
+                            break
                 case "5":
                     print("podaj klase")
                     clas = input()
