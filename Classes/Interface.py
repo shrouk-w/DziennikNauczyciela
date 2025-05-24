@@ -39,7 +39,7 @@ class Interface:
             print("1. Dodaj nowego ucznia")
             print("2. Wybierz ucznia")
             print("3. Pokaż zagrożenia")
-            print("4. Sprawdź obecność lub wystaw oceny") #to do
+            print("4. Sprawdź obecność lub wystaw oceny") 
             print("5. Wstaw nową klasę")
             print("6. Usuń jedną z klas")
             print("7. Stwórz statystyki")
