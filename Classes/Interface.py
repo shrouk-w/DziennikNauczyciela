@@ -230,6 +230,10 @@ class Interface:
                             Charts.plot_student_grades_over_time(stud)
                         case _:
                             print("nie ma takiej opcji")
+                case "8":
+                    NameOfClass.add_class(input())
+                case "9":
+                    NameOfClass.del_class(input())
 
                 case _:
                     print("nie ma takiej opcji")
