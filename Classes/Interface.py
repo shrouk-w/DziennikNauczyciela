@@ -140,6 +140,12 @@ class Interface:
                             print("podaj klase: ")
                             nclas = input()
                             StudentManager.reassign_class(student, nclas)
+                        case "7":
+                            for g in student.grades:
+                                print(g)
+                        case "8":
+                            for a in student.attendance:
+                                print(a)
                         case "0":
                             StudentManager.delete_student(student)
                         case _:
