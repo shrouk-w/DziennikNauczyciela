@@ -165,7 +165,24 @@ class Interface:
                     if(dec == '1'):
                         StudentManager.checkAttendence(clas, clasname)
                     elif(dec == '2'):
-                        pass
+                        StudentManager.show_class_students(clas)
+                        print("wpisz id ucznia ktoremu chcesz wstawic ocene")
+                        id = input()
+                        stud = StudentManager.get_student(int(id))
+                        if(stud is None):
+                            return # wyjątek nie zanleziono taikego ucznia
+                        print("wpisz ocene (przdział 1-6)")
+                        grade = float(input())
+                        print("wpisz opis")
+                        desc = input()
+                        print("podaj typ: ")
+                        print("--legenda--")
+                        print("1. praca domowa")
+                        print("2. kartkówka")
+                        print("3. sprawdzian")
+                        print("-----------")
+                        type = int(input())
+                        stud.add_grade(Grade(grade,desc,clasname, type))
                     else:
                         print("nie ma takiej opcji")
                 case "5":
