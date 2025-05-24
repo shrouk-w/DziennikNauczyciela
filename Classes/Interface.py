@@ -43,8 +43,8 @@ class Interface:
             print("5. Wstaw nową klasę")
             print("6. Usuń jedną z klas")
             print("7. Stwórz statystyki")
-            print("8. dodaj nowy przedmiot") #to do
-            print("9. usuń jeden z przedmiotów") #to do
+            print("8. dodaj nowy przedmiot")
+            print("9. usuń jeden z przedmiotów") 
             print("0. Wyjdź")
             print("-----------------------------------------")
             provided = input()
