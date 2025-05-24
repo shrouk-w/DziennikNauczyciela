@@ -1,6 +1,7 @@
 ﻿from datetime import date
 from unittest import case
 
+from Classes.Attendence import Attendence
 from Classes.Grade import Grade
 from Classes.NameOfClass import NameOfClass
 from Classes.Student import Student
@@ -25,6 +26,8 @@ class Interface:
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
+        stud.add_attendance(Attendence("j. polski",TypeOfAttendence.LATE))
+        stud.add_attendance(Attendence("matematyka",TypeOfAttendence.NOTPRESENT))
         stud = Student("Jan2","Kowalski","12312312312","1A")
         stud = Student("Jan3","Kowalski","12312312312","1A")
         stud = Student("Jan4","Kowalski","12312312312","1A")
@@ -39,12 +42,12 @@ class Interface:
             print("1. Dodaj nowego ucznia")
             print("2. Wybierz ucznia")
             print("3. Pokaż zagrożenia")
-            print("4. Sprawdź obecność lub wystaw oceny") 
+            print("4. Sprawdź obecność lub wystaw oceny")
             print("5. Wstaw nową klasę")
             print("6. Usuń jedną z klas")
             print("7. Stwórz statystyki")
             print("8. dodaj nowy przedmiot")
-            print("9. usuń jeden z przedmiotów") 
+            print("9. usuń jeden z przedmiotów")
             print("0. Wyjdź")
             print("-----------------------------------------")
             provided = input()
@@ -102,7 +105,7 @@ class Interface:
                     print("5. wyświetl czy jest zagrożony")
                     print("6. przypisz do innej klasy")
                     print("7. wyświetl oceny z detalami")
-                    print("8. wyświetl obecności z detalami") 
+                    print("8. wyświetl obecności z detalami")
                     print("0. usuń studenta")
                     print("-------------------------------------")
                     decision = input()
@@ -170,7 +173,34 @@ class Interface:
                                 student.grades[id].type = TypeOfGrade(type)
 
                         case "3":
-                            pass
+                            for i in range(len(student.attendance)):
+                                print(f"{i + 1}: {student.attendance[i]}")
+                            print("wybierz id obecności którą chcesz edytować")
+                            id = int(input()) - 1
+                            if student.attendance[id].dateOfAttendence != date.today():
+                                return #wyjątek można edytować tylko obecności wystawione dzisiaj (tak było w wymaganiach projektu)
+                            print("chce zmienić przedmiot T/N")
+                            dec = input()
+                            if (dec == 'T'):
+                                NameOfClass.show_class_names()
+                                print("wybierz przedmiot")
+                                clasname = input()
+                                if not NameOfClass.isNameOfClass(clasname):
+                                    return #wyjątek nie ma tekiaego przedmiotu
+                                student.attendance[id].nameOfClass = clasname
+                            print("chce edytować typ obecności T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("---------legenda--------")
+                                print("-1. nie ma")
+                                print("0. spóźniony")
+                                print("1. obecny")
+                                print("2. usprawiedliwiony")
+                                print("------------------------")
+                                print("podaj typ")
+                                type = int(input())
+                                student.attendance[id].typeOfAttendence = TypeOfAttendence(type)
+
                         case "4":
                             print(student.avarage())
                         case "5":
@@ -219,7 +249,7 @@ class Interface:
                             print("wpisz id ucznia ktoremu chcesz wstawic ocene")
                             id = input()
                             stud = StudentManager.get_student(int(id))
-                            if(stud is None):
+                            if stud is None :
                                 return # wyjątek nie zanleziono taikego ucznia
                             print("wpisz ocene (przdział 1-6)")
                             grade = float(input())
