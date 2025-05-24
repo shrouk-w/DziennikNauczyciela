@@ -89,7 +89,7 @@ class Interface:
                     print("wybrałeś studenta")
                     student = StudentManager.get_student(int(id))
                     if student is None:
-                        return #wyjatek jak zwróci None nie ma studenta
+                        return #wyjatek jak zwróci None to nie znaleziono studenta
                     print(student)
                     print("grades: ")
                     for grade in student.grades:
@@ -99,8 +99,8 @@ class Interface:
                         print(attendance.typeOfAttendence)
                     print("------wybierz co chcesz zrobić-------")
                     print("1. edytuj dane studenta")
-                    print("2. edytuj ocenę studenta") #to do
-                    print("3. edytuj obecność studenta") #to do
+                    print("2. edytuj ocenę studenta")
+                    print("3. edytuj obecność studenta")
                     print("4. wyświetl średnią")
                     print("5. wyświetl czy jest zagrożony")
                     print("6. przypisz do innej klasy")
@@ -288,6 +288,8 @@ class Interface:
                             StudentManager.show_all_classes()
                             print("wybierz klasę")
                             clas = input()
+                            if not NameOfClass.isNameOfClass(clas):
+                                return #wyjątek nie ma takiej klasy
                             Charts.plot_student_averages(StudentManager.classMap[clas])
                             Charts.plot_attendance_distribution(StudentManager.classMap[clas])
                         case "3":
@@ -295,6 +297,8 @@ class Interface:
                             print("wybierz id ucznia")
                             id = input()
                             stud = StudentManager.get_student(int(id))
+                            if stud is None :
+                                return #wyjątek nie znaleziono takiego ucznia
                             Charts.plot_student_grades_over_time(stud)
                         case _:
                             print("nie ma takiej opcji")
