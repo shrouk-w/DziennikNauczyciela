@@ -100,3 +100,12 @@ class Charts:
             for student in students:
                 Charts.plot_student_grades_over_time(student, writer)
         print(f"Wszystkie dane i wykresy zapisano do: {Charts.excel_file}")
+
+    @staticmethod
+    def export_one(student):
+        Charts._prepare_output()
+        with pd.ExcelWriter(Charts.excel_file, engine='xlsxwriter') as writer:
+            Charts.plot_student_averages([student], writer)
+            Charts.plot_attendance_distribution([student], writer)
+            Charts.plot_student_grades_over_time(student, writer)
+        print(f"Dane i wykresy dla ucznia zapisano do: {Charts.excel_file}")

@@ -291,7 +291,7 @@ class Interface:
                             print("wybierz klasę")
                             clas = input()
                             if not NameOfClass.isNameOfClass(clas):
-                                return #wyjątek nie ma takiej klasy
+                                raise ClassDoesNotExist(f"Nie ma takiej klasy: {clas}")
                             Charts.plot_student_averages(StudentManager.classMap[clas])
                             Charts.plot_attendance_distribution(StudentManager.classMap[clas])
                         case "3":
@@ -300,7 +300,7 @@ class Interface:
                             id = input()
                             stud = StudentManager.get_student(int(id))
                             if stud is None :
-                                return #wyjątek nie znaleziono takiego ucznia
+                                raise InvalidStudentData("Nie znaleziono ucznia o podanym ID.")
                             Charts.plot_student_grades_over_time(stud)
                         case _:
                             print("nie ma takiej opcji")
