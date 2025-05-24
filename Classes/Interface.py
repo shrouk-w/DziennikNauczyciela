@@ -65,7 +65,7 @@ class Interface:
                     if(len(pesel) != 11):
                         return #tu wyjątek
                     print("Wpisz klasę do której chcesz przypisać ucznia lub '-' jeżeli nie chcesz na razie go przypisywać")
-                    clas = input() #tu tez mozna sprwadzić czy format klasy to liczba - literka i wyjątek
+                    clas = input()
                     if(clas == '-'):
                         student = Student(imie, nazwisko, pesel)
                     else:
@@ -299,9 +299,13 @@ class Interface:
                         case _:
                             print("nie ma takiej opcji")
                 case "8":
+                    NameOfClass.show_class_names()
                     NameOfClass.add_class(input())
+                    NameOfClass.show_class_names()
                 case "9":
+                    NameOfClass.show_class_names()
                     NameOfClass.del_class(input())
+                    NameOfClass.show_class_names()
 
                 case _:
                     print("nie ma takiej opcji")
