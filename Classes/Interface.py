@@ -284,16 +284,16 @@ class Interface:
                     dec = input()
                     match dec:
                         case "1":
-                            Charts.plot_student_averages(StudentManager.allStudents)
-                            Charts.plot_attendance_distribution(StudentManager.allStudents)
+                            Charts.export_all(StudentManager.allStudents)
+
                         case "2":
                             StudentManager.show_all_classes()
                             print("wybierz klasę")
                             clas = input()
                             if not NameOfClass.isNameOfClass(clas):
                                 raise ClassDoesNotExist(f"Nie ma takiej klasy: {clas}")
-                            Charts.plot_student_averages(StudentManager.classMap[clas])
-                            Charts.plot_attendance_distribution(StudentManager.classMap[clas])
+                            Charts.export_all(StudentManager.classMap[clas])
+
                         case "3":
                             StudentManager.show_all_students()
                             print("wybierz id ucznia")
@@ -301,7 +301,7 @@ class Interface:
                             stud = StudentManager.get_student(int(id))
                             if stud is None :
                                 raise InvalidStudentData("Nie znaleziono ucznia o podanym ID.")
-                            Charts.plot_student_grades_over_time(stud)
+                            Charts.export_one(stud)
                         case _:
                             print("nie ma takiej opcji")
                 case "8":
