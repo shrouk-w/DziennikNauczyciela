@@ -149,7 +149,30 @@ class Interface:
                     print("podaj klase")
                     clas = input()
                     StudentManager.delete_class(clas)
-
+                case "7":
+                    print("----------------------------------------------------------")
+                    print("1. chce wygenerować statystyki dla wszystkich uczniów")
+                    print("2. chce wygenerować statystyki dla jednej klasy")
+                    print("3. chce wygenerować statystyki dla jednego ucznia")
+                    print("----------------------------------------------------------")
+                    dec = input()
+                    match dec:
+                        case "1":
+                            Charts.plot_student_averages(StudentManager.allStudents)
+                            Charts.plot_attendance_distribution(StudentManager.allStudents)
+                        case "2":
+                            StudentManager.show_all_classes()
+                            print("wybierz klasę")
+                            clas = input()
+                            Charts.plot_student_averages(StudentManager.classMap[clas])
+                            Charts.plot_attendance_distribution(StudentManager.classMap[clas])
+                        case "3":
+                            StudentManager.show_all_students()
+                            print("wybierz id ucznia")
+                            id = input()
+                            Charts.plot_student_grades_over_time(StudentManager.get_student(id))
+                        case _:
+                            print("nie ma takiej opcji")
 
                 case _:
                     print()
