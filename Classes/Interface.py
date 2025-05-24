@@ -1,4 +1,5 @@
-﻿from unittest import case
+﻿from datetime import date
+from unittest import case
 
 from Classes.Grade import Grade
 from Classes.Student import Student
@@ -11,9 +12,9 @@ from Classes.Charts import Charts
 class Interface:
 
     @classmethod
-    def start(cls):
+    def start(cls):  # trzeba dodac jeszcze kazdemu normalne oceny przykładowe i normalny attendence przykładowy
         stud = Student("Jan","Kowalski","12312312312","1A")
-        stud.add_grade(Grade(1,"","j. polski",TypeOfGrade.TEST))
+        stud.add_grade(Grade(1,"","j. polski",TypeOfGrade.TEST, date.fromisocalendar(2025,5,1)))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.QUIZ))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
         stud.add_grade(Grade(5,"","j. polski",TypeOfGrade.HOMEWORK))
@@ -23,7 +24,7 @@ class Interface:
         stud = Student("Jan2","Kowalski","12312312312","1A")
         stud = Student("Jan3","Kowalski","12312312312","1A")
         stud = Student("Jan4","Kowalski","12312312312","1A")
-        stud = Student("Jan4","Kowalski","12312312312","1A")
+        stud = Student("Jan5","Kowalski","12312312312","1A")
         stud = Student("Michal","Kowalski","12312312312","1B")
         stud = Student("Michal2","Kowalski","12312312312","1B")
         stud = Student("Michal3","Kowalski","12312312312","1B")
@@ -34,9 +35,12 @@ class Interface:
             print("1. Dodaj nowego ucznia")
             print("2. Wybierz ucznia")
             print("3. Pokaż zagrożenia")
-            print("4. Sprawdź obecność lub wystaw oceny")
+            print("4. Sprawdź obecność lub wystaw oceny") #to do
             print("5. Wstaw nową klasę")
             print("6. Usuń jedną z klas")
+            print("7. Stwórz statystyki")
+            print("8. dodaj nowy przedmiot") #to do
+            print("9. usuń jeden z przedmiotów") #to do
             print("0. Wyjdź")
             print("-----------------------------------------")
             provided = input()
@@ -86,8 +90,8 @@ class Interface:
                         print(attendance.typeOfAttendence)
                     print("------wybierz co chcesz zrobić-------")
                     print("1. edytuj dane studenta")
-                    print("2. edytuj ocenę studenta")
-                    print("3. edytuj obecność studenta")
+                    print("2. edytuj ocenę studenta") #to do
+                    print("3. edytuj obecność studenta") #to do
                     print("4. wyświetl średnią")
                     print("5. wyświetl czy jest zagrożony")
                     print("6. przypisz do innej klasy")
@@ -170,12 +174,12 @@ class Interface:
                             StudentManager.show_all_students()
                             print("wybierz id ucznia")
                             id = input()
-                            Charts.plot_student_grades_over_time(StudentManager.get_student(id))
+                            stud = StudentManager.get_student(int(id))
+                            Charts.plot_student_grades_over_time(stud)
                         case _:
                             print("nie ma takiej opcji")
 
                 case _:
-                    print()
                     print("nie ma takiej opcji")
 
 

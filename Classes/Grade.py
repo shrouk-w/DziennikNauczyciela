@@ -8,7 +8,7 @@ from Classes.TypeOfGrade import TypeOfGrade
 
 
 class Grade:
-    def __init__(self, grade, desc, nameOfClass, type):
+    def __init__(self, grade, desc, nameOfClass, type, date=date.today()):
         if not isinstance(grade, (int, float)):
             raise InvalidGradeType("Ocena musi być liczbą")
         if not isinstance(desc, str):
@@ -20,4 +20,4 @@ class Grade:
         self.desc = desc
         self.nameOfClass = nameOfClass
         self.type = TypeOfGrade(type)
-        self.date = date.today()
+        self.date = date
