@@ -130,7 +130,45 @@ class Interface:
                                 student.pesel = pesel
 
                         case "2":
-                            pass
+                            for i in range(len(student.grades)):
+                                print(f"{i+1}: {student.grades[i]}")
+                            print("wybierz id oceny którą chcesz edytować")
+                            id = int(input())-1
+                            if student.grades[id].date != date.today():
+                                return #wyjątek można edytować tylko oecny wystawione dzisiaj (tak było w wymaganiach projektu)
+                            print("chce zmienić ocenę numeryczną T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj nową ocene")
+                                grad = float(input())
+                                student.grades[id].grade = grad
+                            print("chce zmienić opis T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj nowy opis")
+                                desc = input()
+                                student.grades[id].desc = desc
+                            print("chce zmienić przedmiot T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                NameOfClass.show_class_names()
+                                print("wybierz przedmiot")
+                                clasname = input()
+                                if not NameOfClass.isNameOfClass(clasname):
+                                    return #wyjątek nie ma takiego przedmiotu
+                                student.grades[id].nameOfClass = clasname
+                            print("chce edytować typ oceny T/N")
+                            dec = input()
+                            if(dec == 'T'):
+                                print("podaj typ: ")
+                                print("--legenda--")
+                                print("1. praca domowa")
+                                print("2. kartkówka")
+                                print("3. sprawdzian")
+                                print("-----------")
+                                type = int(input())
+                                student.grades[id].type = TypeOfGrade(type)
+
                         case "3":
                             pass
                         case "4":
